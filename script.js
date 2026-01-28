@@ -3,15 +3,17 @@ const keywordInput = document.getElementById("keyword");
 const modeSelect = document.getElementById("mode");
 const resultDiv = document.getElementById("result");
 const actionBtn = document.getElementById("actionBtn");
+const copyBtn = document.getElementById("copyBtn");
 
-actionBtn.addEventListener("click", handleCipher);
+actionBtn.addEventListener("click", runCipher);
+copyBtn.addEventListener("click", copyResult);
 
-function handleCipher() {
+function runCipher() {
     const message = messageInput.value;
     const keyword = keywordInput.value.toLowerCase();
     const mode = modeSelect.value;
 
-    if (!keyword.match(/^[a-zA-Z]+$/)) {
+    if (!/^[a-zA-Z]+$/.test(keyword)) {
         resultDiv.innerText = "Bitte ein gültiges Schlüsselwort (nur Buchstaben) eingeben.";
         return;
     }
@@ -38,6 +40,28 @@ function handleCipher() {
             result += char;
         }
     }
+
+    resultDiv.innerText = result;
+    resetCopyButton();
+}
+
+function copyResult() {
+    const text = resultDiv.innerText;
+    if (!text) return;
+
+    navigator.clipboard.writeText(text).then(() => {
+        copyBtn.innerText = "✔ Kopiert";
+        copyBtn.classList.add("copied");
+
+        setTimeout(resetCopyButton, 1500);
+    });
+}
+
+function resetCopyButton() {
+    copyBtn.innerText = "📋 Kopieren";
+    copyBtn.classList.remove("copied");
+}
+
 
     resultDiv.innerText = result;
 }
