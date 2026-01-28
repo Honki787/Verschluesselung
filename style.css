@@ -20,7 +20,7 @@ body {
     backdrop-filter: blur(14px);
     border-radius: 20px;
     padding: 24px;
-    color: #fff;
+    color: white;
     box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
@@ -67,8 +67,11 @@ button:active {
     transform: scale(0.96);
 }
 
-.result {
+.result-box {
     margin-top: 18px;
+}
+
+.result {
     padding: 14px;
     background: rgba(0,0,0,0.35);
     border-radius: 12px;
@@ -76,12 +79,20 @@ button:active {
     word-break: break-word;
 }
 
-/* Desktop-Optimierung */
-@media (min-width: 768px) {
-    .container {
-        padding: 30px;
-    }
+.copy-btn {
+    margin-top: 10px;
+    background: #ffffff;
+    color: #000;
+    font-size: 14px;
+}
 
+.copy-btn.copied {
+    background: #4caf50;
+    color: white;
+}
+
+/* Desktop-Feinschliff */
+@media (min-width: 768px) {
     textarea {
         height: 140px;
     }
